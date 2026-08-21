@@ -1,31 +1,37 @@
 // Screen Switcher
 function handleYes() {
-  document.getElementById("question-screen").classList.add("hidden");
-  document.getElementById("main-content").classList.remove("hidden");
+  const qScreen = document.getElementById("question-screen");
+  const mainContent = document.getElementById("main-content");
+  if (qScreen) qScreen.classList.add("hidden");
+  if (mainContent) mainContent.classList.remove("hidden");
 }
 
 function handleNo() {
   const noBtn = document.getElementById("no-btn");
-  noBtn.style.position = "absolute";
-  noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
-  noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+  if (noBtn) {
+    noBtn.style.position = "absolute";
+    noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+  }
 }
 
-// 1. Polaroid Lightbox Gallery
+// 1. Lightbox Gallery
 function openLightbox(element) {
-  const imgSrc = element.querySelector("img").src;
+  const img = element.querySelector("img");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
-  lightboxImg.src = imgSrc;
-  lightbox.style.display = "flex";
+  if (img && lightbox && lightboxImg) {
+    lightboxImg.src = img.src;
+    lightbox.style.display = "flex";
+  }
 }
 
 function closeLightbox() {
-  document.getElementById("lightbox").style.display = "none";
+  const lightbox = document.getElementById("lightbox");
+  if (lightbox) lightbox.style.display = "none";
 }
 
 // 2. Envelope Opening & Typing Effect
-// EDIT YOUR LETTER CONTENT BETWEEN THE QUOTES BELOW:
 const letterText = "From the moment you entered my life, everything changed for the better. I can remember every detail of the days when I first felt the spark between us, it is way out of this world.
           Every time I am with you it's like I have found the missing piece ofmy soul. It is never a dull moment around you. You are the moonlight to my darkest nights, and the sunshine to my rightest days. You are my warmth in the cold, my comfort in the pain, my joy in the sorrow, and my hope in the despair.
           You always make sure there is a smile on me, andI always make sure to see you smile. I love seeing you happy, you are my baby after all.
@@ -38,18 +44,18 @@ const letterText = "From the moment you entered my life, everything changed for 
 function openEnvelope() {
   const wrapper = document.querySelector(".envelope-wrapper");
   const letter = document.getElementById("letter-content");
-  
+  const typedContainer = document.getElementById("typed-text");
+
   if (wrapper) wrapper.style.display = "none";
   if (letter) {
     letter.style.display = "block";
     letter.classList.remove("hidden-letter");
   }
 
-  let index = 0;
-  const typedContainer = document.getElementById("typed-text");
   if (!typedContainer) return;
   typedContainer.textContent = "";
 
+  let index = 0;
   function typeWriter() {
     if (index < letterText.length) {
       typedContainer.textContent += letterText.charAt(index);
@@ -60,40 +66,44 @@ function openEnvelope() {
   typeWriter();
 }
 
-// 3. Floating Hearts Particle Canvas
-const canvas = document.getElementById("heartCanvas");
-const ctx = canvas.getContext("2d");
-let hearts = [];
+// 3. Floating Hearts Canvas
+window.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById("heartCanvas");
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext("2d");
+  let hearts = [];
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
 
-function createHeart() {
-  return {
-    x: Math.random() * canvas.width,
-    y: canvas.height + 20,
-    size: Math.random() * 15 + 10,
-    speed: Math.random() * 2 + 1,
-    opacity: Math.random() * 0.7 + 0.3
-  };
-}
+  function createHeart() {
+    return {
+      x: Math.random() * canvas.width,
+      y: canvas.height + 20,
+      size: Math.random() * 15 + 10,
+      speed: Math.random() * 2 + 1,
+      opacity: Math.random() * 0.7 + 0.3
+    };
+  }
 
-function drawHearts() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (hearts.length < 25) hearts.push(createHeart());
+  function drawHearts() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (hearts.length < 25) hearts.push(createHeart());
 
-  hearts.forEach((h, index) => {
-    ctx.globalAlpha = h.opacity;
-    ctx.font = ${h.size}px serif;
-    ctx.fillText("❤️", h.x, h.y);
-    h.y -= h.speed;
+    hearts.forEach((h, index) => {
+      ctx.globalAlpha = h.opacity;
+      ctx.font = ${h.size}px serif;
+      ctx.fillText("❤️", h.x, h.y);
+      h.y -= h.speed;
 
-    if (h.y < -20) hearts.splice(index, 1);
-  });
-  requestAnimationFrame(drawHearts);
-}
-drawHearts();
+      if (h.y < -20) hearts.splice(index, 1);
+    });
+    requestAnimationFrame(drawHearts);
+  }
+  drawHearts();
+});
