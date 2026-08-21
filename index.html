@@ -65,21 +65,20 @@
     </section>
 
     <!-- Interactive Envelope & Letter Section -->
-    <section class="letter-container">
-      <div class="envelope-wrapper" onclick="openEnvelope()">
-        <div class="envelope">
-          <div class="wax-seal">❤️</div>
-          <p class="click-notice">Tap to open letter</p>
-        </div>
-      </div>
+ <section class="letter-container">
+  <div class="envelope-wrapper" onclick="openEnvelope()" style="position: relative; z-index: 999; cursor: pointer;">
+    <div class="envelope" onclick="openEnvelope()">
+      <div class="wax-seal">❤️</div>
+      <p class="click-notice">Tap to open letter</p>
+    </div>
+  </div>
 
-      <div class="parchment hidden-letter" id="letter-content">
-        <h3 class="letter-heading">Hey Varshita Darling,</h3>
-        <p class="letter-body" id="typed-text"></p>
-        <p class="letter-signature">ALWAYS & FOREVER</p>
-      </div>
-    </section>
-
+  <div class="parchment hidden-letter" id="letter-content" style="display: none;">
+    <h3 class="letter-heading">Hey Varshita Darling,</h3>
+    <p class="letter-body" id="typed-text"></p>
+    <p class="letter-signature">ALWAYS & FOREVER</p>
+  </div>
+</section>
   </main>
 
   <!-- Lightbox Modal -->
