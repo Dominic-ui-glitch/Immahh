@@ -36,12 +36,18 @@ const letterText = "From the moment you entered my life, everything changed for 
           I LOVEE YOUU SO MUCH.........";
 
 function openEnvelope() {
-  document.querySelector(".envelope-wrapper").style.display = "none";
+  const wrapper = document.querySelector(".envelope-wrapper");
   const letter = document.getElementById("letter-content");
-  letter.style.display = "block";
   
+  if (wrapper) wrapper.style.display = "none";
+  if (letter) {
+    letter.style.display = "block";
+    letter.classList.remove("hidden-letter");
+  }
+
   let index = 0;
   const typedContainer = document.getElementById("typed-text");
+  if (!typedContainer) return;
   typedContainer.textContent = "";
 
   function typeWriter() {
