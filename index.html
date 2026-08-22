@@ -23,20 +23,19 @@
     </iframe>
   </div>
 
- <!-- Screen 1: Interactive Question -->
-<section id="question-screen">
-  <div class="card" style="position: relative; z-index: 9999;">
-    <h1 id="question-title">Do you love me? ❤️</h1>
-    <div class="button-group">
-      <!-- Direct inline toggle for Yes button -->
-      <button id="yes-btn" onclick="document.getElementById('question-screen').style.display='none'; document.getElementById('main-content').classList.remove('hidden');">Yes ❤️</button>
-      <button id="no-btn" onclick="this.style.position='absolute'; this.style.top=(Math.random()(window.innerHeight-50))+'px'; this.style.left=(Math.random()(window.innerWidth-100))+'px';">No 💔</button>
+  <!-- Screen 1: Interactive Question -->
+  <section id="question-screen">
+    <div class="card">
+      <h1 id="question-title">Do you love me? ❤️</h1>
+      <div class="button-group">
+        <button id="yes-btn" onclick="handleYes()">Yes ❤️</button>
+        <button id="no-btn" onclick="handleNo()">No 💔</button>
+      </div>
+      <div id="response-area"></div>
     </div>
-    <div id="response-area"></div>
-  </div>
-</section>
+  </section>
 
-  <!-- Screen 2: Gallery & Envelope Letter -->
+  <!-- Screen 2: Gallery & Letter (Hidden until "Yes" is clicked) -->
   <main id="main-content" class="hidden">
     
     <header class="gallery-header">
@@ -45,43 +44,32 @@
 
     <!-- Polaroid Gallery Section -->
     <section class="polaroid-gallery">
-      <div class="polaroid rotate-left" onclick="openLightbox(this)">
+      <div class="polaroid rotate-left">
         <img src="Screenshot_20260822_003804_Files by Google.jpg" alt="Memory 1">
       </div>
-      <div class="polaroid rotate-right" onclick="openLightbox(this)">
+      <div class="polaroid rotate-right">
         <img src="Screenshot_20260822_003831_Files by Google.jpg" alt="Memory 2">
       </div>
-      <div class="polaroid rotate-slight-left" onclick="openLightbox(this)">
+      <div class="polaroid rotate-slight-left">
         <img src="Screenshot_20260822_003845_Files by Google.jpg" alt="Memory 3">
       </div>
-      <div class="polaroid rotate-slight-right" onclick="openLightbox(this)">
+      <div class="polaroid rotate-slight-right">
         <img src="Screenshot_20260822_003900_Files by Google.jpg" alt="Memory 4">
       </div>
-      <div class="polaroid rotate-left" onclick="openLightbox(this)">
+      <div class="polaroid rotate-left">
         <img src="Screenshot_20260822_003913_Files by Google.jpg" alt="Memory 5">
       </div>
-      <div class="polaroid rotate-right" onclick="openLightbox(this)">
+      <div class="polaroid rotate-right">
         <img src="Screenshot_20260822_003947_Files by Google.jpg" alt="Memory 6">
       </div>
     </section>
 
-    <!-- Interactive Envelope & Letter Section -->
-<section class="letter-container">
-  <!-- Envelope (Clicking directly reveals the letter and hides envelope) -->
-  <div id="envelope-card" 
-       onclick="this.style.display='none'; document.getElementById('letter-content').style.display='block';" 
-       style="position: relative; z-index: 9999; cursor: pointer; display: flex; justify-content: center; margin: 40px 0;">
-    <div class="envelope">
-      <div class="wax-seal">❤️</div>
-      <p class="click-notice">Tap to open letter</p>
-    </div>
-  </div>
-
-  <!-- Parchment Letter -->
-  <div class="parchment" id="letter-content" style="display: none;">
-    <h3 class="letter-heading">Hey Varshita Darling,</h3>
-    <p class="letter-body">
-     From the moment you entered my life, everything changed for the better. I can remember every detail of the days when I first felt the spark between us, it is way out of this world.
+    <!-- Ancient Parchment Letter Section -->
+    <section class="letter-container">
+      <div class="parchment">
+        <h3 class="letter-heading">Hey Varshita Darling,</h3>
+        <p class="letter-body">
+         From the moment you entered my life, everything changed for the better. I can remember every detail of the days when I first felt the spark between us, it is way out of this world.
           Every time I am with you it's like I have found the missing piece ofmy soul. It is never a dull moment around you. You are the moonlight to my darkest nights, and the sunshine to my rightest days. You are my warmth in the cold, my comfort in the pain, my joy in the sorrow, and my hope in the despair.
           You always make sure there is a smile on me, andI always make sure to see you smile. I love seeing you happy, you are my baby after all.
           I can't tell you how much I love you more than I can ever get to explain. No enough words can.
@@ -89,20 +77,12 @@
           I love the taste of your lips and your skin, and I love holding you close to me.
           Keep in your beautiful heart and mind that I will ALWAYS be here for you, through the good and the bad. I will always stand with you through every chapter of your life, and I promise to always support you, I will be your pillar.
           I LOVEE YOUU SO MUCH.........
-    </p>
-    <p class="letter-signature">ALWAYS & FOREVER</p>
-  </div>
-</section>
+        </p>
+        <p class="letter-signature">ALWAYS & FOREVER</p>
+      </div>
+    </section>
+
   </main>
-
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <span class="close-btn">&times;</span>
-    <img class="lightbox-content" id="lightbox-img">
-  </div>
-
-  <!-- Floating Hearts Canvas -->
-  <canvas id="heartCanvas"></canvas>
 
   <script src="java.js"></script>
 </body>
