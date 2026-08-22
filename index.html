@@ -23,17 +23,18 @@
     </iframe>
   </div>
 
-  <!-- Screen 1: Interactive Question -->
-  <section id="question-screen">
-    <div class="card">
-      <h1 id="question-title">Do you love me? ❤️</h1>
-      <div class="button-group">
-        <button id="yes-btn" onclick="handleYes()">Yes ❤️</button>
-        <button id="no-btn" onclick="handleNo()">No 💔</button>
-      </div>
-      <div id="response-area"></div>
+ <!-- Screen 1: Interactive Question -->
+<section id="question-screen">
+  <div class="card" style="position: relative; z-index: 9999;">
+    <h1 id="question-title">Do you love me? ❤️</h1>
+    <div class="button-group">
+      <!-- Direct inline toggle for Yes button -->
+      <button id="yes-btn" onclick="document.getElementById('question-screen').style.display='none'; document.getElementById('main-content').classList.remove('hidden');">Yes ❤️</button>
+      <button id="no-btn" onclick="this.style.position='absolute'; this.style.top=(Math.random()(window.innerHeight-50))+'px'; this.style.left=(Math.random()(window.innerWidth-100))+'px';">No 💔</button>
     </div>
-  </section>
+    <div id="response-area"></div>
+  </div>
+</section>
 
   <!-- Screen 2: Gallery & Envelope Letter -->
   <main id="main-content" class="hidden">
